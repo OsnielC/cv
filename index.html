@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osniel Cebrero Arcos - Systems & Infrastructure</title>
+
+    <link rel="icon" href="assets/img/apple-touch-icon.png" type="image/png">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Source_Code_Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="container">
+            <a href="#hero" class="nav-logo">Osniel Cebrero Arcos</a>
+            <ul class="nav-links">
+                <li><a href="#about" data-key="nav_about">About</a></li>
+                <li><a href="#experience" data-key="nav_experience">Experience</a></li>
+                <li><a href="#projects" data-key="nav_projects">Projects</a></li>
+                <li><a href="#contact" data-key="nav_contact">Contact</a></li>
+            </ul>
+            <div class="nav-toggles">
+                <button id="lang-toggle" class="btn-toggle">ES</button>
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero" class="section">
+        <div class="container hero-container">
+            
+            <div class="hero-image reveal">
+                <img src="profile.jpg" alt="Foto de Osniel Cebrero Arcos">
+            </div>
+
+            <div class="hero-content reveal">
+                <h1 data-key="hero_title">Osniel Cebrero Arcos</h1>
+                <p class="subtitle" data-key="hero_subtitle">Infrastructure Administration & Support | Linux & Windows Environments</p>
+                <div class="hero-buttons">
+                    <!-- <a href="#projects" class="btn btn-primary" data-key="hero_btn_projects">View My Projects</a> -->
+                    <button id="open-terminal-btn" class="btn btn-secondary">
+                        <i class="fa-solid fa-terminal"></i> <span data-key="hero_btn_terminal">Launch Terminal</span>
+                    </button>
+                    <a href="https://www.linkedin.com/in/osniel-cebrero-arcos/" target="_blank" class="btn btn-icon">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+                <a href="Osniel Cebrero Arcos.pdf" class="btn btn-download" download>
+                    <i class="fa-solid fa-download"></i> <span data-key="hero_btn_cv">Download Curriculum</span>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2 data-key="about_title"><i class="fa-solid fa-user-tie"></i> About Me</h2>
+                </div>
+                <div class="about-content">
+                    <div class="about-text card reveal">
+                        <h3 data-key="about_subtitle1">Professional Profile</h3>
+                        <p data-key="about_p">Experienced professional in administration and support of infrastructure in Linux and Windows environments. Focused on task automation, database management, and corporate email platform administration. Skilled in application deployment, report generation, and system monitoring, contributing to operational continuity and technological process improvement.</p>
+                    </div>
+                    <div class="skills-card card reveal">
+                        <h3 data-key="about_subtitle2"><i class="fa-solid fa-cogs"></i> Core Technologies</h3>
+                        <div class="skills-grid">
+                            <span class="reveal"><i class="fa-brands fa-linux"></i> Linux</span>
+                            <span class="reveal"><i class="fa-brands fa-windows"></i> Windows Server</span>
+                            <span class="reveal"><i class="fa-solid fa-database"></i> PostgreSQL</span>
+                            <span class="reveal"><i class="fa-solid fa-code"></i> Bash</span>
+                            <span class="reveal"><i class="fa-solid fa-code"></i> PowerShell</span>
+                            <span class="reveal"><i class="fa-solid fa-chart-bar"></i> Power BI</span>
+                            <span class="reveal"><i class="fa-brands fa-git-alt"></i> Git</span>
+                            <span class="reveal"><i class="fa-solid fa-cloud"></i> Office 365 Admin</span>
+                            <span class="reveal"><i class="fa-solid fa-server"></i> Zabbix</span>
+                            <span class="reveal"><i class="fa-solid fa-database"></i> SSRS</span>
+                            <span class="reveal"><i class="fa-solid fa-box-archive"></i> DSpace</span>
+                            <span class="reveal"><i class="fa-brands fa-docker"></i> Docker</span>
+                            <span class="reveal"><i class="fa-brands fa-aws"></i> AWS</span>
+                            <span class="reveal"><i class="fa-brands fa-html5"></i> HTML5</span>
+                            <span class="reveal"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+                            <span class="reveal"><i class="fa-brands fa-js"></i> JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2 data-key="exp_title"><i class="fa-solid fa-briefcase"></i> Professional Experience</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-content card">
+                            <h3 data-key="exp_job1_title">Systems and Applications Administrator</h3>
+                            <span class="timeline-date" data-key="exp_job1_date">Sept 2023 - Present | Universidad La Salle Oaxaca</span>
+                            <ul data-key="exp_job1_list">
+                                <li>Administration of Linux and Windows Server (AD, DNS, DHCP).</li>
+                                <li>Task automation using Bash and PowerShell (backups, user management, monitoring).</li>
+                                <li>PostgreSQL database management: installation, backup, optimization, and queries.</li>
+                                <li>Creation of dashboards in Power BI and operational reports using Report Builder (SSRS).</li>
+                                <li>Infrastructure monitoring using Zabbix: agents, items, triggers, and alerts.</li>
+                                <li>Implementation of Google Workspace with Single Sign-On (SSO) authentication using SAML.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-content card">
+                            <h3 data-key="exp_job2_title">Independent Consultant</h3>
+                            <span class="timeline-date" data-key="exp_job2_date">2024 | G10 Asesores Empresariales S.A. de C.V.</span>
+                            <ul data-key="exp_job2_list">
+                                <li>Task automation using Bash scripting for deployment processes.</li>
+                                <li>Adjustments and maintenance of the testing environment, including service configuration and error resolution in Linux environments.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-content card">
+                            <h3 data-key="exp_job3_title">Intern</h3>
+                            <span class="timeline-date" data-key="exp_job3_date">June 2022 - Nov 2022 | Fundación Alfredo Harp Helú Oaxаса</span>
+                            <ul data-key="exp_job3_list">
+                                <li>Assigned to the digital affairs committee, supported web design, maintenance, logistics, and technical support... using Bootstrap and a cloud-based development environment through Amazon Web Services instances.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2 data-key="proj_title"><i class="fa-solid fa-laptop-code"></i> Featured Projects</h2>
+                </div>
+                <div class="projects-grid">
+                    <div class="card project-card reveal">
+                        <h3 data-key="proj_1_title">Google Workspace SSO Implementation</h3>
+                        <p data-key="proj_1_desc">Led the implementation of Google Workspace with Single Sign-On (SSO) authentication using SAML, integrated with email clients like Outlook to ensure interoperability.</p>
+                        <div class="project-tags">
+                            <span>SAML</span>
+                            <span>SSO</span>
+                            <span>Google Workspace</span>
+                            <span>Outlook</span>
+                        </div>
+                    </div>
+                    <div class="card project-card reveal">
+                        <h3 data-key="proj_2_title">Automation & Monitoring Solutions</h3>
+                        <p data-key="proj_2_desc">Developed and deployed scripts in Bash and PowerShell for automating critical tasks like backups and user management. Configured Zabbix monitoring with custom agents, items, and triggers.</p>
+                        <div class="project-tags">
+                            <span>Bash</span>
+                            <span>PowerShell</span>
+                            <span>Zabbix</span>
+                            <span>Automation</span>
+                        </div>
+                    </div>
+                    <div class="card project-card reveal">
+                        <h3 data-key="proj_3_title">BI Dashboards & Reporting</h3>
+                        <p data-key="proj_3_desc">Created operational dashboards in Power BI and custom reports using Report Builder (SSRS) to provide actionable insights from PostgreSQL and SQL Server databases.</p>
+                        <div class="project-tags">
+                            <span>Power BI</span>
+                            <span>SSRS</span>
+                            <span>PostgreSQL</span>
+                            <span>Data Viz</span>
+                        </div>
+                    </div>
+                    <div class="card project-card reveal">
+                        <h3 data-key="proj_4_title">Linux RAID & Samba Server</h3>
+                        <p data-key="proj_4_desc">Configured a software RAID 1 (mirroring) on a Linux server for data redundancy. Deployed and managed a Samba server for secure, cross-platform file sharing.</p>
+                        <div class="project-tags">
+                            <span>Linux</span>
+                            <span>RAID</span>
+                            <span>Samba</span>
+                            <span>File Server</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="section">
+             <div class="container">
+                <div class="section-title reveal">
+                    <h2 data-key="cert_title"><i class="fa-solid fa-award"></i> Certifications</h2>
+                </div>
+                <div class="cert-list">
+                    <a href="https://www.certiport.com/Portal/Pages/PrintTranscriptInfo.aspx?action=Cert&id=251&cvid=/Cp9caUr8mpqFY7ESusIKg==" target="_blank" class="cert-item card reveal">
+                        <i class="fa-solid fa-file-excel"></i> Microsoft Office Specialist Excel 2016
+                    </a>
+                    <a href="https://www.certiport.com/Portal/Pages/PrintTranscriptInfo.aspx?action=Cert&id=250&cvid=4RSqrgCVuCU1jAl/hnhS7w==" target="_blank" class="cert-item card reveal">
+                        <i class="fa-solid fa-file-word"></i> Microsoft Office Specialist Word 2016
+                    </a>
+                    <a href="https://certificates.cs50.io/526ad805-01e3-499d-aa0f-51e34bc18815.pdf" target="_blank" class="cert-item card reveal">
+                        <i class="fa-solid fa-laptop-code"></i> CS50 from Harvard University 2022
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container reveal">
+                <div class="section-title">
+                    <h2 data-key="contact_title"><i class="fa-solid fa-envelope"></i> Get In Touch</h2>
+                </div>
+                <p data-key="contact_p">I'm open to discussing new projects and opportunities. Let's connect!</p>
+                <div class="contact-links">
+                    <a href="mailto:osnielca@gmail.com" class="btn btn-primary">
+                        <i class="fa-solid fa-envelope"></i> osnielca@gmail.com
+                    </a>
+                    <a href="tel:+527441207246" class="btn btn-secondary">
+                        <i class="fa-solid fa-phone"></i> +52 (744) 120-7246
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="reveal">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/osniel-cebrero-arcos/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/OsnielC" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+            <p data-key="footer_text">&copy; 2025 Osniel Cebrero Arcos. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="terminal-modal" class="modal-overlay">
+        <div id="terminal-window" class="card">
+            <div id="terminal-header">
+                <div class="header-buttons">
+                    <span class="dot red" id="terminal-close-btn"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="header-title">
+                    osniel@cloud-server: ~
+                </div>
+            </div>
+            <div id="terminal-body">
+                <div id="terminal-output"></div>
+                <div id="input-line">
+                    <span class="prompt">osniel@cloud-server:~$</span>
+                    <input type="text" id="terminal-command-input" autofocus>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
