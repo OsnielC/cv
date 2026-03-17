@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Círculo Perfecto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
+  <header>
+    <h1>Círculo <span>&</span> Perfección</h1>
+  </header>
+
+  <div id="canvas-wrap">
+    <canvas id="c-bg"></canvas>
+    <canvas id="c-draw"></canvas>
+    <canvas id="c-fx"></canvas>
+
+    <div id="score-box">
+      <div id="score-num">0%</div>
+      <div id="score-grade">—</div>
+      <div id="score-sub">
+        <div class="sub-item">
+          <span class="sub-val" id="sub-round">—</span>
+          <span class="sub-lbl">redondez</span>
+        </div>
+        <div class="sub-item">
+          <span class="sub-val" id="sub-cover">—</span>
+          <span class="sub-lbl">cobertura</span>
+        </div>
+        <div class="sub-item">
+          <span class="sub-val" id="sub-close">—</span>
+          <span class="sub-lbl">cierre</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="cheat-warn"></div>
+    <div id="hint">dibuja un círculo</div>
+    <div id="retry-hint">toca para intentar de nuevo</div>
+    <div id="stat-best">mejor: <span id="best-val">—</span></div>
+    <div id="history-row"></div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
