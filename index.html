@@ -1,262 +1,1101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osniel Cebrero Arcos - Systems & Infrastructure</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Osniel Cebrero Arcos — Systems & Infrastructure</title>
+  <meta name="description" content="Infrastructure professional specializing in Linux & Windows environments, database management, automation, and enterprise systems administration." />
 
-    <link rel="icon" href="assets/img/apple-touch-icon.png" type="image/png">
-    
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Source_Code_Pro:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0B0B0F;
+      --bg2:      #12121A;
+      --bg3:      #19191F;
+      --border:   rgba(255,255,255,0.07);
+      --border-h: rgba(255,255,255,0.14);
+      --gold:     #E8A923;
+      --gold-dim: rgba(232,169,35,0.12);
+      --gold-glow:rgba(232,169,35,0.06);
+      --text:     #DDDDE8;
+      --text2:    #888899;
+      --text3:    #505060;
+      --ff-head:  'Playfair Display', Georgia, serif;
+      --ff-body:  'DM Sans', system-ui, sans-serif;
+      --ff-mono:  'JetBrains Mono', monospace;
+      --radius:   10px;
+      --radius-lg:18px;
+      --t:        cubic-bezier(.16,1,.3,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NOISE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 64px;
+      background: rgba(11,11,15,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--ff-mono);
+      font-size: 13px;
+      color: var(--gold);
+      letter-spacing: .04em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text2);
+      text-decoration: none;
+      letter-spacing: .04em;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-lang {
+      font-family: var(--ff-mono);
+      font-size: 12px;
+      color: var(--text3);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .nav-lang:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px clamp(1.5rem, 8vw, 7rem) 60px;
+      position: relative;
+    }
+
+.hero-grid {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: var(--ff-mono);
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1.name {
+      font-family: var(--ff-head);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: #F0EEE8;
+      margin-bottom: .5rem;
+    }
+
+    h1.name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-role {
+      font-size: 1rem;
+      color: var(--text2);
+      font-weight: 300;
+      letter-spacing: .04em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text2);
+      max-width: 520px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--gold);
+      color: #0B0B0F;
+      font-family: var(--ff-body);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: .65rem 1.5rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: opacity .2s, transform .2s;
+    }
+    .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--ff-body);
+      font-size: 14px;
+      text-decoration: none;
+      padding: .65rem 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-h);
+      transition: border-color .2s, transform .2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); transform: translateY(-1px); }
+
+    .hero-avatar-wrapper {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  box-shadow: 0 0 60px rgba(232,169,35,0.1);
+  flex-shrink: 0;
+  overflow: hidden; /* Esto es clave para que el zoom no se salga del círculo */
+}
+
+.hero-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Hacemos un zoom de 2.2x y enfocamos el acercamiento hacia tu rostro */
+  transform: scale(2.2);
+  transform-origin: center 25%;
+}
+
+    .hero-bg-ring {
+      position: absolute;
+      right: 5vw;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+    .hero-bg-ring::before {
+      content: '';
+      position: absolute;
+      inset: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      padding: 6rem clamp(1.5rem, 8vw, 7rem);
+      position: relative;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+    .section-tag::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: var(--ff-head);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: #F0EEE8;
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text2);
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .tech-tag {
+      display: inline-block;
+      font-family: var(--ff-mono);
+      font-size: 12px;
+      color: var(--text2);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      transition: border-color .2s, color .2s;
+    }
+    .tech-tag:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg); }
+
+    .timeline {
+      position: relative;
+      max-width: 760px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    .tl-item {
+      padding-left: 2.5rem;
+      padding-bottom: 3rem;
+      position: relative;
+    }
+
+    .tl-item:last-child { padding-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -5px;
+      top: 8px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 12px rgba(232,169,35,.4);
+    }
+
+    .tl-date {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: .4rem;
+    }
+
+    .tl-company {
+      font-size: 13px;
+      color: var(--text2);
+      margin-bottom: .25rem;
+    }
+
+    .tl-role {
+      font-family: var(--ff-head);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: #F0EEE8;
+      margin-bottom: 1rem;
+    }
+
+    .tl-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .tl-list li {
+      font-size: .9rem;
+      color: var(--text2);
+      font-weight: 300;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .tl-list li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--bg2); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      transition: border-color .3s, transform .3s var(--t);
+    }
+
+    .skill-card:hover {
+      border-color: var(--border-h);
+      transform: translateY(-3px);
+    }
+
+    .skill-cat {
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+
+    .skill-card h4 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #F0EEE8;
+      margin-bottom: .75rem;
+    }
+
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+
+    .skill-items span {
+      font-size: 11px;
+      font-family: var(--ff-mono);
+      color: var(--text2);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    #certifications { background: var(--bg); }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .cert-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color .3s, transform .3s var(--t);
+    }
+    .cert-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-3px);
+    }
+    .cert-card a { text-decoration: none; display: flex; flex-direction: column; gap: 1rem; }
+
+    .cert-issuer {
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .cert-name {
+      font-size: .95rem;
+      font-weight: 500;
+      color: #F0EEE8;
+      line-height: 1.4;
+    }
+
+    .cert-verify {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: 12px;
+      color: var(--text2);
+      margin-top: auto;
+      transition: color .2s;
+    }
+    .cert-card:hover .cert-verify { color: var(--gold); }
+    .cert-verify svg { width: 12px; height: 12px; }
+
+    /* no-link cert */
+    .cert-card.no-link { cursor: default; }
+    .cert-card.no-link:hover { border-color: var(--border-h); transform: none; }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--bg2); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .proj-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      transition: border-color .3s, transform .3s var(--t);
+    }
+    .proj-card:hover { border-color: var(--border-h); transform: translateY(-3px); }
+
+    .proj-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(232,169,35,.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    .proj-title {
+      font-family: var(--ff-head);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #F0EEE8;
+      margin-bottom: .6rem;
+    }
+
+    .proj-desc {
+      font-size: .88rem;
+      color: var(--text2);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+
+    .proj-tag {
+      font-size: 11px;
+      font-family: var(--ff-mono);
+      color: var(--text2);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg); }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 900px;
+    }
+
+    .contact-desc {
+      font-size: .95rem;
+      color: var(--text2);
+      font-weight: 300;
+      margin-top: .5rem;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .9rem 1.25rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--text);
+      font-size: .9rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .contact-link:hover { border-color: var(--gold); transform: translateX(4px); }
+
+    .contact-link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(232,169,35,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-link-icon svg { width: 16px; height: 16px; color: var(--gold); }
+
+    .contact-link-label { font-size: 11px; color: var(--text2); }
+    .contact-link-value { font-size: .88rem; font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text3);
+      font-family: var(--ff-mono);
+      letter-spacing: .04em;
+    }
+
+    footer a { color: var(--text2); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s var(--t), transform .7s var(--t);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--border-h);
+      margin: 2rem 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-avatar { display: none; }
+      .hero-bg-ring { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { display: none; }
+    }
+  </style>
 </head>
+
 <body>
 
-    <nav id="navbar">
-        <div class="container">
-            <a href="#hero" class="nav-logo">Osniel Cebrero Arcos</a>
-            <ul class="nav-links">
-                <li><a href="#about" data-key="nav_about">About</a></li>
-                <li><a href="#experience" data-key="nav_experience">Experience</a></li>
-                <li><a href="#projects" data-key="nav_projects">Projects</a></li>
-                <li><a href="#contact" data-key="nav_contact">Contact</a></li>
-            </ul>
-            <div class="nav-toggles">
-                <button id="lang-toggle" class="btn-toggle">ES</button>
-                <label class="theme-switch">
-                    <input type="checkbox" id="theme-toggle">
-                    <span class="slider"></span>
-                </label>
-            </div>
+  <!-- ── NAV ── -->
+  <nav>
+    <a class="nav-logo" href="#hero">osniel.dev</a>
+    <ul class="nav-links">
+      <li><a href="#about" data-en="About" data-es="Sobre mí">About</a></li>
+      <li><a href="#experience" data-en="Experience" data-es="Experiencia">Experience</a></li>
+      <li><a href="#skills" data-en="Skills" data-es="Habilidades">Skills</a></li>
+      <li><a href="#certifications" data-en="Certifications" data-es="Certificaciones">Certifications</a></li>
+      <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
+    </ul>
+    <button class="nav-lang" id="langBtn" onclick="toggleLang()">ES</button>
+  </nav>
+
+<!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <span data-en="Infrastructure & Systems" data-es="Infraestructura & Sistemas">Infrastructure & Systems</span>
         </div>
-    </nav>
-
-    <header id="hero" class="section">
-        <div class="container hero-container">
-            
-            <div class="hero-image reveal">
-                <img src="profile.jpg" alt="Foto de Osniel Cebrero Arcos">
-            </div>
-
-            <div class="hero-content reveal">
-                <h1 data-key="hero_title">Osniel Cebrero Arcos</h1>
-                <p class="subtitle" data-key="hero_subtitle">Infrastructure Administration & Support | Linux & Windows Environments</p>
-                <div class="hero-buttons">
-                    <!-- <a href="#projects" class="btn btn-primary" data-key="hero_btn_projects">View My Projects</a> -->
-                    <button id="open-terminal-btn" class="btn btn-secondary">
-                        <i class="fa-solid fa-terminal"></i> <span data-key="hero_btn_terminal">Launch Terminal</span>
-                    </button>
-                    <a href="https://www.linkedin.com/in/osniel-cebrero-arcos/" target="_blank" class="btn btn-icon">
-                        <i class="fa-brands fa-linkedin"></i> LinkedIn
-                    </a>
-                </div>
-                <a href="Osniel Cebrero Arcos.pdf" class="btn btn-download" download>
-                    <i class="fa-solid fa-download"></i> <span data-key="hero_btn_cv">Download Curriculum</span>
-                </a>
-            </div>
-
+        <h1 class="name">Osniel<br /><em>Cebrero Arcos</em></h1>
+        <p class="hero-role" data-en="Systems Administrator · Linux & Windows · Oaxaca, México" data-es="Administrador de Sistemas · Linux & Windows · Oaxaca, México">
+          Systems Administrator · Linux & Windows
+        </p>
+        <p class="hero-desc" data-en="Experienced in infrastructure administration and support in Linux and Windows environments. Focused on automation, database management, and enterprise platform operations." data-es="Profesional con experiencia en administración y soporte de infraestructura en entornos Linux y Windows. Con enfoque en automatización, gestión de bases de datos y plataformas empresariales.">
+          Experienced in infrastructure administration and support in Linux and Windows environments. Focused on automation, database management, and enterprise platform operations.
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="https://www.linkedin.com/in/osniel-cebrero-arcos/" target="_blank" rel="noopener">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn-outline" href="Osniel Cebrero Arcos.pdf" target="_blank">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-en="Download CV" data-es="Descargar CV">Download CV</span>
+          </a>
+          <a class="btn-outline" href="https://github.com/OsnielC" target="_blank" rel="noopener">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
         </div>
-    </header>
-
-    <main>
-        <section id="about" class="section">
-            <div class="container">
-                <div class="section-title reveal">
-                    <h2 data-key="about_title"><i class="fa-solid fa-user-tie"></i> About Me</h2>
-                </div>
-                <div class="about-content">
-                    <div class="about-text card reveal">
-                        <h3 data-key="about_subtitle1">Professional Profile</h3>
-                        <p data-key="about_p">Experienced professional in administration and support of infrastructure in Linux and Windows environments. Focused on task automation, database management, and corporate email platform administration. Skilled in application deployment, report generation, and system monitoring, contributing to operational continuity and technological process improvement.</p>
-                    </div>
-                    <div class="skills-card card reveal">
-                        <h3 data-key="about_subtitle2"><i class="fa-solid fa-cogs"></i> Core Technologies</h3>
-                        <div class="skills-grid">
-                            <span class="reveal"><i class="fa-brands fa-linux"></i> Linux</span>
-                            <span class="reveal"><i class="fa-brands fa-windows"></i> Windows Server</span>
-                            <span class="reveal"><i class="fa-solid fa-database"></i> PostgreSQL</span>
-                            <span class="reveal"><i class="fa-solid fa-code"></i> Bash</span>
-                            <span class="reveal"><i class="fa-solid fa-code"></i> PowerShell</span>
-                            <span class="reveal"><i class="fa-solid fa-chart-bar"></i> Power BI</span>
-                            <span class="reveal"><i class="fa-brands fa-git-alt"></i> Git</span>
-                            <span class="reveal"><i class="fa-solid fa-cloud"></i> Office 365 Admin</span>
-                            <span class="reveal"><i class="fa-solid fa-server"></i> Zabbix</span>
-                            <span class="reveal"><i class="fa-solid fa-database"></i> SSRS</span>
-                            <span class="reveal"><i class="fa-solid fa-box-archive"></i> DSpace</span>
-                            <span class="reveal"><i class="fa-brands fa-docker"></i> Docker</span>
-                            <span class="reveal"><i class="fa-brands fa-aws"></i> AWS</span>
-                            <span class="reveal"><i class="fa-brands fa-html5"></i> HTML5</span>
-                            <span class="reveal"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
-                            <span class="reveal"><i class="fa-brands fa-js"></i> JavaScript</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience" class="section">
-            <div class="container">
-                <div class="section-title reveal">
-                    <h2 data-key="exp_title"><i class="fa-solid fa-briefcase"></i> Professional Experience</h2>
-                </div>
-                <div class="timeline">
-                    <div class="timeline-item reveal">
-                        <div class="timeline-content card">
-                            <h3 data-key="exp_job1_title">Systems and Applications Administrator</h3>
-                            <span class="timeline-date" data-key="exp_job1_date">Sept 2023 - Present | Universidad La Salle Oaxaca</span>
-                            <ul data-key="exp_job1_list">
-                                <li>Administration of Linux and Windows Server (AD, DNS, DHCP).</li>
-                                <li>Task automation using Bash and PowerShell (backups, user management, monitoring).</li>
-                                <li>PostgreSQL database management: installation, backup, optimization, and queries.</li>
-                                <li>Creation of dashboards in Power BI and operational reports using Report Builder (SSRS).</li>
-                                <li>Infrastructure monitoring using Zabbix: agents, items, triggers, and alerts.</li>
-                                <li>Implementation of Google Workspace with Single Sign-On (SSO) authentication using SAML.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-content card">
-                            <h3 data-key="exp_job2_title">Independent Consultant</h3>
-                            <span class="timeline-date" data-key="exp_job2_date">2024 | G10 Asesores Empresariales S.A. de C.V.</span>
-                            <ul data-key="exp_job2_list">
-                                <li>Task automation using Bash scripting for deployment processes.</li>
-                                <li>Adjustments and maintenance of the testing environment, including service configuration and error resolution in Linux environments.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-content card">
-                            <h3 data-key="exp_job3_title">Intern</h3>
-                            <span class="timeline-date" data-key="exp_job3_date">June 2022 - Nov 2022 | Fundación Alfredo Harp Helú Oaxаса</span>
-                            <ul data-key="exp_job3_list">
-                                <li>Assigned to the digital affairs committee, supported web design, maintenance, logistics, and technical support... using Bootstrap and a cloud-based development environment through Amazon Web Services instances.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="section">
-            <div class="container">
-                <div class="section-title reveal">
-                    <h2 data-key="proj_title"><i class="fa-solid fa-laptop-code"></i> Featured Projects</h2>
-                </div>
-                <div class="projects-grid">
-                    <div class="card project-card reveal">
-                        <h3 data-key="proj_1_title">Google Workspace SSO Implementation</h3>
-                        <p data-key="proj_1_desc">Led the implementation of Google Workspace with Single Sign-On (SSO) authentication using SAML, integrated with email clients like Outlook to ensure interoperability.</p>
-                        <div class="project-tags">
-                            <span>SAML</span>
-                            <span>SSO</span>
-                            <span>Google Workspace</span>
-                            <span>Outlook</span>
-                        </div>
-                    </div>
-                    <div class="card project-card reveal">
-                        <h3 data-key="proj_2_title">Automation & Monitoring Solutions</h3>
-                        <p data-key="proj_2_desc">Developed and deployed scripts in Bash and PowerShell for automating critical tasks like backups and user management. Configured Zabbix monitoring with custom agents, items, and triggers.</p>
-                        <div class="project-tags">
-                            <span>Bash</span>
-                            <span>PowerShell</span>
-                            <span>Zabbix</span>
-                            <span>Automation</span>
-                        </div>
-                    </div>
-                    <div class="card project-card reveal">
-                        <h3 data-key="proj_3_title">BI Dashboards & Reporting</h3>
-                        <p data-key="proj_3_desc">Created operational dashboards in Power BI and custom reports using Report Builder (SSRS) to provide actionable insights from PostgreSQL and SQL Server databases.</p>
-                        <div class="project-tags">
-                            <span>Power BI</span>
-                            <span>SSRS</span>
-                            <span>PostgreSQL</span>
-                            <span>Data Viz</span>
-                        </div>
-                    </div>
-                    <div class="card project-card reveal">
-                        <h3 data-key="proj_4_title">Linux RAID & Samba Server</h3>
-                        <p data-key="proj_4_desc">Configured a software RAID 1 (mirroring) on a Linux server for data redundancy. Deployed and managed a Samba server for secure, cross-platform file sharing.</p>
-                        <div class="project-tags">
-                            <span>Linux</span>
-                            <span>RAID</span>
-                            <span>Samba</span>
-                            <span>File Server</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="certifications" class="section">
-             <div class="container">
-                <div class="section-title reveal">
-                    <h2 data-key="cert_title"><i class="fa-solid fa-award"></i> Certifications</h2>
-                </div>
-                <div class="cert-list">
-                    <a href="https://www.certiport.com/Portal/Pages/PrintTranscriptInfo.aspx?action=Cert&id=251&cvid=/Cp9caUr8mpqFY7ESusIKg==" target="_blank" class="cert-item card reveal">
-                        <i class="fa-solid fa-file-excel"></i> Microsoft Office Specialist Excel 2016
-                    </a>
-                    <a href="https://www.certiport.com/Portal/Pages/PrintTranscriptInfo.aspx?action=Cert&id=250&cvid=4RSqrgCVuCU1jAl/hnhS7w==" target="_blank" class="cert-item card reveal">
-                        <i class="fa-solid fa-file-word"></i> Microsoft Office Specialist Word 2016
-                    </a>
-                    <a href="https://certificates.cs50.io/526ad805-01e3-499d-aa0f-51e34bc18815.pdf" target="_blank" class="cert-item card reveal">
-                        <i class="fa-solid fa-laptop-code"></i> CS50 from Harvard University 2022
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section">
-            <div class="container reveal">
-                <div class="section-title">
-                    <h2 data-key="contact_title"><i class="fa-solid fa-envelope"></i> Get In Touch</h2>
-                </div>
-                <p data-key="contact_p">I'm open to discussing new projects and opportunities. Let's connect!</p>
-                <div class="contact-links">
-                    <a href="mailto:osnielca@gmail.com" class="btn btn-primary">
-                        <i class="fa-solid fa-envelope"></i> osnielca@gmail.com
-                    </a>
-                    <a href="tel:+527441207246" class="btn btn-secondary">
-                        <i class="fa-solid fa-phone"></i> +52 (744) 120-7246
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="reveal">
-        <div class="container">
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/osniel-cebrero-arcos/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/OsnielC" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            </div>
-            <p data-key="footer_text">&copy; 2025 Osniel Cebrero Arcos. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <div id="terminal-modal" class="modal-overlay">
-        <div id="terminal-window" class="card">
-            <div id="terminal-header">
-                <div class="header-buttons">
-                    <span class="dot red" id="terminal-close-btn"></span>
-                    <span class="dot yellow"></span>
-                    <span class="dot green"></span>
-                </div>
-                <div class="header-title">
-                    osniel@cloud-server: ~
-                </div>
-            </div>
-            <div id="terminal-body">
-                <div id="terminal-output"></div>
-                <div id="input-line">
-                    <span class="prompt">osniel@cloud-server:~$</span>
-                    <input type="text" id="terminal-command-input" autofocus>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </section>
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="section-tag">
+      <span data-en="Profile" data-es="Perfil">Profile</span>
+    </div>
+    <h2 class="section-title" data-en="About Me" data-es="Sobre Mí">About Me</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p data-en="Experienced professional in administration and support of infrastructure in Linux and Windows environments. With a focus on task automation, database management, and corporate email platform administration." data-es="Profesional con experiencia en administración y soporte de infraestructura en entornos Linux y Windows. Con enfoque en la automatización de tareas, gestión de bases de datos y administración de plataformas de correo corporativo.">
+          Experienced professional in administration and support of infrastructure in Linux and Windows environments. With a focus on task automation, database management, and corporate email platform administration.
+        </p>
+        <p data-en="Skilled in application deployment, report generation, and system monitoring, contributing to operational continuity and technological process improvement." data-es="Habilidades en despliegue de aplicaciones, generación de reportes y monitoreo de sistemas, contribuyendo a la continuidad operativa y la mejora de procesos tecnológicos.">
+          Skilled in application deployment, report generation, and system monitoring, contributing to operational continuity and technological process improvement.
+        </p>
+        <div class="divider"></div>
+        <p style="font-size:.85rem; color:var(--text2);">
+          <strong style="color:var(--text); font-weight:500;" data-en="Education" data-es="Educación">Education</strong><br/>
+          <span data-en="Bachelor's in Computer Science" data-es="Licenciatura en Informática">Bachelor's in Computer Science</span> —
+          <span style="color:var(--text3);">Universidad UGMEX Campus Oaxaca · 2019–2023</span>
+        </p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <p style="font-size:.85rem; color:var(--text2); margin-bottom:1.25rem; font-weight:300;" data-en="Core technologies I work with:" data-es="Tecnologías principales con las que trabajo:">Core technologies I work with:</p>
+        <div class="tech-grid">
+          <span class="tech-tag">Linux</span><span class="tech-tag">Windows Server</span>
+          <span class="tech-tag">Bash</span><span class="tech-tag">PowerShell</span>
+          <span class="tech-tag">Python</span><span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">PostgreSQL</span><span class="tech-tag">MySQL</span>
+          <span class="tech-tag">Power BI</span><span class="tech-tag">SSRS</span>
+          <span class="tech-tag">Active Directory</span><span class="tech-tag">Zabbix</span>
+          <span class="tech-tag">Office 365</span><span class="tech-tag">Google Workspace</span>
+          <span class="tech-tag">VMware ESXi</span><span class="tech-tag">Docker</span>
+          <span class="tech-tag">Git</span><span class="tech-tag">Samba</span>
+          <span class="tech-tag">IIS</span><span class="tech-tag">AWS</span>
+          <span class="tech-tag">Astro</span><span class="tech-tag">DSpace</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- ── EXPERIENCE ── -->
+  <section id="experience">
+    <div class="section-tag">
+      <span data-en="Career" data-es="Carrera">Career</span>
+    </div>
+    <h2 class="section-title" data-en="Experience" data-es="Experiencia">Experience</h2>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-date" data-en="Sept 2023 — Present" data-es="Sept 2023 — Presente">Sept 2023 — Present</div>
+        <div class="tl-company">Universidad La Salle Oaxaca</div>
+        <div class="tl-role" data-en="Systems & Applications Administrator" data-es="Responsable de Sistemas y Aplicaciones">Systems & Applications Administrator</div>
+        <ul class="tl-list">
+          <li data-en="Linux and Windows Server administration (AD, DNS, DHCP)." data-es="Administración de servidores Linux y Windows Server (AD, DNS, DHCP).">Linux and Windows Server administration (AD, DNS, DHCP).</li>
+          <li data-en="Samba server configuration for file sharing with access control." data-es="Configuración de servidor Samba para compartición de archivos con control de acceso.">Samba server configuration for file sharing with access control.</li>
+          <li data-en="Task automation with Bash and PowerShell (backups, users, monitoring)." data-es="Automatización de tareas con Bash y PowerShell (backups, usuarios, monitoreo).">Task automation with Bash and PowerShell (backups, users, monitoring).</li>
+          <li data-en="PostgreSQL database management: installation, backup, optimization, and queries." data-es="Gestión de bases de datos PostgreSQL: instalación, respaldo, optimización y consultas.">PostgreSQL database management: installation, backup, optimization, and queries.</li>
+          <li data-en="Power BI dashboards and operational reports with Report Builder (SSRS)." data-es="Creación de dashboards en Power BI y reportes operativos con Report Builder (SSRS).">Power BI dashboards and operational reports with Report Builder (SSRS).</li>
+          <li data-en="Office 365 administration: accounts, licenses, mailboxes, and PowerShell scripts." data-es="Administración de Office 365: cuentas, licencias, buzones y scripts con PowerShell.">Office 365 administration: accounts, licenses, mailboxes, and PowerShell scripts.</li>
+          <li data-en="Infrastructure monitoring with Zabbix: agents, items, triggers, and alerts." data-es="Monitoreo de infraestructura con Zabbix: agentes, ítems, triggers y alertas.">Infrastructure monitoring with Zabbix: agents, items, triggers, and alerts.</li>
+          <li data-en="Google Workspace SSO implementation via SAML, integrated with Outlook." data-es="Implementación de Google Workspace con SSO mediante SAML, integrado con Outlook.">Google Workspace SSO implementation via SAML, integrated with Outlook.</li>
+          <li data-en="Technical documentation of configurations, custom scripts, and procedures." data-es="Documentación técnica de configuraciones, scripts personalizados y procedimientos.">Technical documentation of configurations, custom scripts, and procedures.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal reveal-delay-1">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2024</div>
+        <div class="tl-company">G10 Asesores Empresariales S.A. de C.V.</div>
+        <div class="tl-role" data-en="Independent Consultant" data-es="Consultor Independiente">Independent Consultant</div>
+        <ul class="tl-list">
+          <li data-en="Task automation via Bash scripting for deployment processes." data-es="Automatización de tareas mediante scripting en Bash para procesos de despliegue.">Task automation via Bash scripting for deployment processes.</li>
+          <li data-en="Maintenance of testing environment, service configuration, and Linux error resolution." data-es="Mantenimiento del ambiente de pruebas, configuración de servicios y resolución de errores en Linux.">Maintenance of testing environment, service configuration, and Linux error resolution.</li>
+          <li data-en="Improved operational workflow for smoother deployment of new system versions." data-es="Mejora de flujo operativo para facilitar la implementación de nuevas versiones del sistema.">Improved operational workflow for smoother deployment of new system versions.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal reveal-delay-2">
+        <div class="tl-dot"></div>
+        <div class="tl-date" data-en="June 2022 — November 2022" data-es="Junio 2022 — Noviembre 2022">June 2022 — November 2022</div>
+        <div class="tl-company">Fundación Alfredo Harp Helú Oaxaca</div>
+        <div class="tl-role" data-en="Professional Internship" data-es="Prácticas Profesionales">Professional Internship</div>
+        <ul class="tl-list">
+          <li data-en="Assigned to the digital affairs committee; web design, maintenance, and user support." data-es="Asignado al comité de asuntos digitales; diseño web, mantenimiento y soporte a usuarios.">Assigned to the digital affairs committee; web design, maintenance, and user support.</li>
+          <li data-en="Platform support for Baúl de la FAHHO using Bootstrap and AWS cloud instances." data-es="Soporte de la plataforma Baúl de la FAHHO con Bootstrap e instancias de Amazon Web Services.">Platform support for Baúl de la FAHHO using Bootstrap and AWS cloud instances.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills">
+    <div class="section-tag">
+      <span data-en="Expertise" data-es="Experticia">Expertise</span>
+    </div>
+    <h2 class="section-title" data-en="Technical Skills" data-es="Habilidades Técnicas">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-cat" data-en="Systems" data-es="Sistemas">Systems</div>
+        <h4>Infrastructure</h4>
+        <div class="skill-items">
+          <span>Linux</span><span>Windows Server</span><span>VMware ESXi</span><span>Active Directory</span><span>DNS/DHCP</span><span>IIS</span><span>Samba</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-cat" data-en="Automation" data-es="Automatización">Automation</div>
+        <h4>Scripting</h4>
+        <div class="skill-items">
+          <span>Bash</span><span>PowerShell</span><span>Python</span><span>Microsoft Graph</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <div class="skill-cat" data-en="Databases" data-es="Bases de Datos">Databases</div>
+        <h4>Data Management</h4>
+        <div class="skill-items">
+          <span>PostgreSQL</span><span>MySQL</span><span>Power BI</span><span>SSRS</span><span>SQL Server</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <div class="skill-cat" data-en="Monitoring" data-es="Monitoreo">Monitoring</div>
+        <h4>Observability</h4>
+        <div class="skill-items">
+          <span>Zabbix</span><span>Agents</span><span>Triggers</span><span>Alerting</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-cat" data-en="Cloud & Email" data-es="Nube y Correo">Cloud & Email</div>
+        <h4>Platforms</h4>
+        <div class="skill-items">
+          <span>Office 365</span><span>Google Workspace</span><span>SAML/SSO</span><span>AWS</span><span>Docker</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-cat" data-en="Development" data-es="Desarrollo">Development</div>
+        <h4>Web & CMS</h4>
+        <div class="skill-items">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Astro</span><span>WordPress</span><span>DSpace</span><span>Vufind</span><span>Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CERTIFICATIONS ── -->
+  <section id="certifications">
+    <div class="section-tag">
+      <span data-en="Credentials" data-es="Credenciales">Credentials</span>
+    </div>
+    <h2 class="section-title" data-en="Certifications" data-es="Certificaciones">Certifications</h2>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <a href="https://www.certiport.com/Portal/Pages/PrintTranscriptInfo.aspx?action=Cert&id=251&cvid=/Cp9caUr8mpqFY7ESusIKg==" target="_blank" rel="noopener">
+          <span class="cert-issuer">Microsoft</span>
+          <span class="cert-name" data-en="Office Specialist Excel 2016" data-es="Office Specialist Excel 2016">Office Specialist Excel 2016</span>
+          <span class="cert-verify">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span data-en="Verify credential" data-es="Verificar credencial">Verify credential</span>
+          </span>
+        </a>
+      </div>
+      <div class="cert-card reveal reveal-delay-1">
+        <a href="https://www.certiport.com/Portal/Pages/PrintTranscriptInfo.aspx?action=Cert&id=250&cvid=4RSqrgCVuCU1jAl/hnhS7w==" target="_blank" rel="noopener">
+          <span class="cert-issuer">Microsoft</span>
+          <span class="cert-name" data-en="Office Specialist Word 2016" data-es="Office Specialist Word 2016">Office Specialist Word 2016</span>
+          <span class="cert-verify">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span data-en="Verify credential" data-es="Verificar credencial">Verify credential</span>
+          </span>
+        </a>
+      </div>
+      <div class="cert-card reveal reveal-delay-2">
+        <a href="https://certificates.cs50.io/526ad805-01e3-499d-aa0f-51e34bc18815.pdf" target="_blank" rel="noopener">
+          <span class="cert-issuer">Harvard University</span>
+          <span class="cert-name">CS50 — Introduction to Computer Science · 2022</span>
+          <span class="cert-verify">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span data-en="Verify credential" data-es="Verificar credencial">Verify credential</span>
+          </span>
+        </a>
+      </div>
+      <div class="cert-card no-link reveal reveal-delay-3">
+        <a href="https://www.credly.com/badges/3bcfb9c6-1f79-471b-bcfd-8a1109534635">
+        <span class="cert-issuer">Cisco Networking Academy</span>
+        <span class="cert-name">Ethical Hacker</span>
+        <span class="cert-verify" style="opacity:.45;">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span data-en="Verified" data-es="Verificado">Verified</span>
+        </span>
+        </a>
+      </div>
+      <div class="cert-card no-link reveal">
+        <a href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/CJ0NRP39U0QH">
+        <span class="cert-issuer">Google</span>
+        <span class="cert-name" data-en="Google Workspace Administrator" data-es="Google Workspace Administrator">Google Workspace Administrator</span>
+        <span class="cert-verify" style="opacity:.45;">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span data-en="Verified" data-es="Verificado">Verified</span>
+        </span>
+        </a>
+      </div>
+      <div class="cert-card no-link reveal reveal-delay-1">
+        <a href="https://training.fortinet.com/pluginfile.php/1/tool_certificate/issues/1776794555/7365612406OC.pdf" target="_blank" rel="noopener">
+        <span class="cert-issuer">Fortinet</span>
+        <span class="cert-name" data-en="Fortinet Certified Associate in Cybersecurity" data-es="Fortinet Certified Associate en Ciberseguridad">Fortinet Certified Associate in Cybersecurity</span>
+        <span class="cert-verify" style="opacity:.45;">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span data-en="Verified" data-es="Verificado">Verified</span>
+        </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <div class="section-tag">
+      <span data-en="Work" data-es="Trabajo">Work</span>
+    </div>
+    <h2 class="section-title" data-en="Featured Projects" data-es="Proyectos Destacados">Featured Projects</h2>
+    <div class="projects-grid">
+      <div class="proj-card reveal">
+        <div class="proj-icon">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="proj-title" data-en="Google Workspace SSO" data-es="Google Workspace SSO">Google Workspace SSO</div>
+        <div class="proj-desc" data-en="Led SAML-based Single Sign-On implementation for Google Workspace, integrated with Outlook to ensure interoperability and a unified user experience." data-es="Implementación de Single Sign-On basado en SAML para Google Workspace, integrado con Outlook para garantizar interoperabilidad y experiencia unificada.">
+          Led SAML-based Single Sign-On implementation for Google Workspace, integrated with Outlook to ensure interoperability and a unified user experience.
+        </div>
+        <div class="proj-tags">
+          <span class="proj-tag">SAML</span><span class="proj-tag">SSO</span><span class="proj-tag">Google Workspace</span><span class="proj-tag">Outlook</span>
+        </div>
+      </div>
+      <div class="proj-card reveal reveal-delay-1">
+        <div class="proj-icon">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="proj-title" data-en="Automation & Monitoring" data-es="Automatización y Monitoreo">Automation & Monitoring</div>
+        <div class="proj-desc" data-en="Developed and deployed Bash and PowerShell scripts for automating critical tasks (backups, user management). Configured Zabbix with custom agents, items, and triggers." data-es="Scripts en Bash y PowerShell para automatizar tareas críticas (backups, usuarios). Configuración de Zabbix con agentes, ítems y triggers personalizados.">
+          Developed Bash and PowerShell scripts for automating critical tasks (backups, user management). Configured Zabbix with custom agents, items, and triggers.
+        </div>
+        <div class="proj-tags">
+          <span class="proj-tag">Bash</span><span class="proj-tag">PowerShell</span><span class="proj-tag">Zabbix</span>
+        </div>
+      </div>
+      <div class="proj-card reveal reveal-delay-2">
+        <div class="proj-icon">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="proj-title" data-en="BI Dashboards & Reporting" data-es="Dashboards BI y Reportes">BI Dashboards & Reporting</div>
+        <div class="proj-desc" data-en="Operational dashboards in Power BI and custom reports using SSRS to deliver actionable insights from PostgreSQL and SQL Server databases." data-es="Dashboards operativos en Power BI y reportes personalizados con SSRS para información accionable desde PostgreSQL y SQL Server.">
+          Operational dashboards in Power BI and custom reports using SSRS to deliver actionable insights from PostgreSQL and SQL Server databases.
+        </div>
+        <div class="proj-tags">
+          <span class="proj-tag">Power BI</span><span class="proj-tag">SSRS</span><span class="proj-tag">PostgreSQL</span>
+        </div>
+      </div>
+      <div class="proj-card reveal reveal-delay-3">
+        <div class="proj-icon">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        </div>
+        <div class="proj-title" data-en="Linux RAID & Samba Server" data-es="RAID Linux y Servidor Samba">Linux RAID & Samba Server</div>
+        <div class="proj-desc" data-en="Configured software RAID 1 on a Linux server for data redundancy. Deployed and managed a Samba server for secure, cross-platform file sharing with access control." data-es="Configuración de RAID 1 por software en servidor Linux para redundancia de datos. Samba para compartición de archivos multiplataforma con control de acceso.">
+          Configured software RAID 1 on a Linux server for data redundancy. Deployed and managed Samba for secure cross-platform file sharing with granular access control.
+        </div>
+        <div class="proj-tags">
+          <span class="proj-tag">Linux</span><span class="proj-tag">RAID</span><span class="proj-tag">Samba</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="section-tag">
+      <span data-en="Get in touch" data-es="Contáctame">Get in touch</span>
+    </div>
+    <h2 class="section-title" data-en="Contact" data-es="Contacto">Contact</h2>
+    <div class="contact-inner">
+      <div class="reveal">
+        <p class="contact-desc" data-en="Open to discussing new projects, opportunities, or collaborations. Feel free to reach out through any of the following channels." data-es="Abierto a discutir nuevos proyectos, oportunidades o colaboraciones. No dudes en contactarme a través de cualquiera de los siguientes canales.">
+          Open to discussing new projects, opportunities, or collaborations. Feel free to reach out through any of the following channels.
+        </p>
+      </div>
+      <div class="contact-links reveal reveal-delay-1">
+        <a class="contact-link" href="mailto:osnielca@gmail.com">
+          <div class="contact-link-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">osnielca@gmail.com</div>
+          </div>
+        </a>
+        <a class="contact-link" href="tel:+527441207246">
+          <div class="contact-link-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.908.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label" data-en="Phone" data-es="Teléfono">Phone</div>
+            <div class="contact-link-value">+52 (744) 120-7246</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/osniel-cebrero-arcos/" target="_blank" rel="noopener">
+          <div class="contact-link-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">osniel-cebrero-arcos</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://github.com/OsnielC" target="_blank" rel="noopener">
+          <div class="contact-link-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-value">OsnielC</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>© 2026 Osniel Cebrero Arcos · <a href="#hero">osniel.dev</a></p>
+  </footer>
+
+  <!-- ── JS ── -->
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // i18n
+    let currentLang = 'en';
+
+    function toggleLang() {
+      currentLang = currentLang === 'en' ? 'es' : 'en';
+      document.getElementById('langBtn').textContent = currentLang === 'en' ? 'ES' : 'EN';
+      document.documentElement.lang = currentLang;
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.getAttribute('data-' + currentLang);
+      });
+    }
+
+    // Smooth active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const navObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => a.style.color = '');
+          const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          if (active) active.style.color = 'var(--gold)';
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => navObs.observe(s));
+  </script>
 </body>
 </html>
